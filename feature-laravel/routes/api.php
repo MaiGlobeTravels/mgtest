@@ -7,6 +7,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/tours', function () {
-    return \App\Models\Tour::all();
-});
+Route::get('/tours', [\App\Http\Controllers\TourController::class, 'index']);
+Route::post('/tours', [\App\Http\Controllers\TourController::class, 'store']);

@@ -9,4 +9,11 @@ class Tour extends Model
 {
     /** @use HasFactory<\Database\Factories\TourFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'price',
+        'date'
+    ];
 }

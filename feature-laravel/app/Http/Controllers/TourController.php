@@ -28,11 +28,17 @@ class TourController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|min:3',
+            'description' => 'required',
             'price' => 'required|numeric',
-            'date' => 'after:today'
+            'date' => 'required|date'
         ]);
 
-        $tour = \App\Models\Tour::create($validated);
+        try {
+            $tour = \App\Models\Tour::create($validated);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error creating tour', 'error' => $e->getMessage()], 500);
+        }
+
         return response()->json(['data' => $tour], 201);
     }
 }
