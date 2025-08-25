@@ -9,6 +9,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Date</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody class="border border-1 bg-gray-50">
@@ -18,6 +19,10 @@
         <td>{{ tour.description }}</td>
         <td>{{ tour.price }}</td>
         <td>{{ tour.date }}</td>
+        <td>
+          <!-- <button class="btn" @click="editTour(tour)">Edit</button> -->
+          <button class="btn bg-red-500 p-2" @click="deleteTour(tour.id)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -42,6 +47,7 @@
         </div>
         <button class="btn bg-gray-300 p-3 mt-3" type="submit">Create Tour</button>
     </form>
+            <!-- <button class="btn bg-gray-300 p-3 mt-3 ml-3" @click="updateTour">Update Tour</button> -->
 </template>
 <script>
     export default {
@@ -50,6 +56,7 @@
             return {
                 tours: [],
                 tour: {
+                    id: null,
                     title: '',
                     description: '',
                     price: 0,
@@ -77,6 +84,34 @@
                     .then(response => {
                         console.log(response.data);
                         this.tours.push(response.data.data);
+                    });
+            },
+            editTour(tour) {
+                this.tour = { ...tour };
+            },
+            updateTour() {
+                const formData = new FormData();
+                formData.append('title', this.tour.title);
+                formData.append('description', this.tour.description);
+                formData.append('price', this.tour.price);
+                formData.append('date', this.tour.date);
+
+                console.log('Updating tour with data:', this.tour);
+
+                axios.put(`/api/tours/${this.tour.id}`, formData)
+                    .then(response => {
+                        console.log(response.data);
+                        const index = this.tours.findIndex(t => t.id === this.tour.id);
+                        if (index !== -1) {
+                            this.tours.splice(index, 1, response.data.data);
+                        }
+                    });
+            },
+            deleteTour(id) {
+                axios.delete(`/api/tours/${id}`)
+                    .then(response => {
+                        console.log(response.data);
+                        this.tours = this.tours.filter(t => t.id !== id);
                     });
             }
         }

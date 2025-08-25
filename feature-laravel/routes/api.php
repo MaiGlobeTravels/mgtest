@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/tours', [\App\Http\Controllers\TourController::class, 'index']);
 Route::post('/tours', [\App\Http\Controllers\TourController::class, 'store']);
+Route::put('/tours/{id}', [\App\Http\Controllers\TourController::class, 'update']);
+Route::delete('/tours/{id}', [\App\Http\Controllers\TourController::class, 'destroy']);

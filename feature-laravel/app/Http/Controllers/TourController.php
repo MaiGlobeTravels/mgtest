@@ -41,4 +41,45 @@ class TourController extends Controller
 
         return response()->json(['data' => $tour], 201);
     }
+
+    public function update($id, Request $request)
+    {
+        $tour = \App\Models\Tour::find($id);
+
+        if (!$tour) {
+            return response()->json(['message' => 'Tour not found'], 404);
+        }
+
+        $validated = $request->validate([
+            'title' => 'sometimes|required|min:3',
+            'description' => 'sometimes|required',
+            'price' => 'sometimes|required|numeric',
+            'date' => 'sometimes|required|date'
+        ]);
+
+        try {
+            $tour->update($validated);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error updating tour', 'error' => $e->getMessage()], 500);
+        }
+
+        return response()->json(['data' => $tour]);
+    }
+
+    public function destroy($id)
+    {
+        $tour = \App\Models\Tour::find($id);
+
+        if (!$tour) {
+            return response()->json(['message' => 'Tour not found'], 404);
+        }
+
+        try {
+            $tour->delete();
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error deleting tour', 'error' => $e->getMessage()], 500);
+        }
+
+        return response()->json(['message' => 'Tour deleted successfully']);
+    }
 }
