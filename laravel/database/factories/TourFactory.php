@@ -2,28 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\Tour;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class TourFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Tour::class;
+
+    public function definition()
     {
         return [
-            'title' => fake()->name(),
-            'description' => 'descriptions',
-            'price' => fake()->numbers,
-            'date' => now(),
+            'title' => $this->faker->sentence(3),     
+            'description' => $this->faker->paragraph(),  
+            'price' => $this->faker->numberBetween(50, 100), 
+            'date' => $this->faker->date('Y-m-d', '+1 year'), 
         ];
     }
-
 }
