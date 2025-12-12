@@ -1,2 +1,0 @@
-# mgtest
-interview test repo
