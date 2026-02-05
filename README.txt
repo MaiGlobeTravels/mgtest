@@ -23,7 +23,9 @@
 22- Creating the `Algorithm Controller` for function of closest upcoming tour generation.
 23- IMplementing the enndpoint for closest upcoming tour generation.
 24- Creating new branch for VUE related development.
-26- 
+26- Implement the frontend for All tours list `/` route.
+27- Implement the frontend for new tour creation.
+28- API integration with axios thorough `api.ts`.
 
 
 API:
