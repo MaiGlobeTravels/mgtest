@@ -22,13 +22,13 @@ class TourController extends Controller
         return response()->json($tour);
     }
 
-    public function store(Request $request)
+    public function store(TourRequest $request)
     {
-        $tour = Tours::create($request->all());
+        $tour = Tours::create($request->validated());
         return response()->json($tour, 201);
     }
 
-    public function report()
+    public function report(Request $request)
     {
         $tours = Tours::all();
         sleep(5);
