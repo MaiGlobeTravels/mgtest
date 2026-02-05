@@ -23,7 +23,7 @@ export const listTours = async (): Promise<Tour[]> => {
 };
 
 export const createTour = async (payload: Partial<Tour>): Promise<Tour> => {
-    const res = await api.post('api/tours', payload);
+    const res = await api.post('/tours', payload);
     return res.data;
 };
 

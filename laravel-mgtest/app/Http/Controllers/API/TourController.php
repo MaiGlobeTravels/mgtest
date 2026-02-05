@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tours;
+use App\Http\Requests\TourRequest;
 
 
 class TourController extends Controller
