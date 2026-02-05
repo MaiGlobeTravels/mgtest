@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Tours;
+use App\Http\Requests\TourRequest;
+
 
 class TourController extends Controller
 {
@@ -15,7 +18,7 @@ class TourController extends Controller
 
     public function show($id)
     {
-        $tour = Tours::find($id);
+        $tour = Tours::findOrFail($id);
         if (!$tour) {
             return response()->json(['message' => 'Tour not found'], 404);
         }

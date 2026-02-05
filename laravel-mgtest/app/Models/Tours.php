@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 class Tours extends Model
 {
     protected $fillable = [
+        'id',
         'title',
         'description',
         'price',
