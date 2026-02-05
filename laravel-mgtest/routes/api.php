@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
         Route::post('/', [App\Http\Controllers\API\TourController::class, 'store']);
         Route::post('/process-report', [App\Http\Controllers\API\TourController::class, 'generateReport']);
     });
+    Route::post('/algorithm/closest-upcoming-tour', [App\Http\Controllers\API\AlgorithmController::class, 'upcomingTours']);
 
 
 /*
