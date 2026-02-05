@@ -32,5 +32,8 @@ class ToursSeeder extends Seeder
                 'date' => '2026-03-01',
             ],
         ];
+        foreach ($tours as $tour) {
+            \App\Models\Tours::create($tour);
+        }
     }
 }
