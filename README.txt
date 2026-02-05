@@ -26,7 +26,8 @@
 26- Implement the frontend for All tours list `/` route.
 27- Implement the frontend for new tour creation.
 28- API integration with axios thorough `api.ts`.
-
+29- API intergartion with fullter app through env with `API_URL`.
+30- Implementing screens for all tours and the single tour.
 
 API:
 API Endpoints (Tours)
