@@ -12,3 +12,4 @@ Route::get('tours', [TourController::class, 'index']);
 Route::get('tours/{id}', [TourController::class, 'show']);
 Route::post('tours', [TourController::class, 'store']);
 Route::post('tours/process-report', [TourController::class, 'processReport']);
+Route::get('algorithm/closest-upcoming-tour', [TourController::class, 'closestTours']);
