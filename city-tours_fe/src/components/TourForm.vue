@@ -41,6 +41,7 @@ const errors = ref({})
 
     async function submit() {
       error.value = null
+      errors.value = {}
       try {
         await api.post('/api/tours', form)
         emit('created')
@@ -48,7 +49,6 @@ const errors = ref({})
         form.description = ''
         form.price = null
         form.date = ''
-        alert('Tour created')
       } catch (e) {
         error.value = e?.response?.data?.message || 'Failed to create tour'
         errors.value = e?.response?.data?.errors || {}

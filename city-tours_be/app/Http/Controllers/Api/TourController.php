@@ -59,6 +59,9 @@ class TourController extends Controller
         return response()->json(['message' => 'Report generated', 'path' => $path], 200);
     }
 
+    /**
+     * Return the closest upcoming tour.
+     */
     public function closestTours(): JsonResponse
     {
         $closestTours = Tour::where('date', '>', Carbon::now())
