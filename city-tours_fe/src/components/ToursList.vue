@@ -1,11 +1,26 @@
 <template>
   <div>
     <h2>All Tours</h2>
-    <ul>
-      <li v-for="tour in tours" :key="tour.id">{{ tour.title }} — {{ tour.price }}</li>
-    </ul>
-    <div v-if="loading">Loading...</div>
-    <div v-if="error" style="color:red">{{ error }}</div>
+    
+    <table class="tours-table" style="border-collapse: collapse; width: 100%;">
+
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="tour in tours" :key="tour.id">
+          <td>{{ tour.title }}</td>
+          <td>{{ tour.description }}</td>
+          <td>${{ tour.price.toFixed(2) }}</td>
+          <td>{{ tour.date }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -35,3 +50,16 @@ fetchTours()
 // expose method to parent
 defineExpose({ fetchTours })
 </script>
+
+<style scoped>
+.tours-table, .tours-table th, .tours-table td {
+  border: 1px solid #ddd;
+}
+.tours-table th, .tours-table td {
+  padding: 8px;
+  text-align: left;
+}
+.tours-table th {
+  background: #f2f2f2;
+}
+</style>
