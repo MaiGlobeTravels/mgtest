@@ -1,1 +1,2 @@
 This is the sample test file by mithuranga. 
+This is the new branch - git-test-mithuranga
